@@ -6,10 +6,11 @@
                 <img :src="navbarStore.logo" alt="image d'un oeuf xénomorphe" srcset="">
                 <!-- TEST -->
                 <div class="hamburger navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <div class="upper"></div>
-                    <div class="middle"></div>
-                    <div class="lower"></div>
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                    :class="{ 'is-active': isHamburgerActive }" @click="toggleHamburger">
+                    <div class="upper" :class="{ 'upper-active': isHamburgerActive }"></div>
+                    <div class="middle" :class="{ 'middle-active': isHamburgerActive }"></div>
+                    <div class="lower" :class="{ 'lower-active': isHamburgerActive }"></div>
                 </div>
                 <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -18,9 +19,10 @@
                 </button> -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item" v-for="(item, navigationIndex) in navbarStore.pages"
-                            :key="navigationIndex">
-                            <router-link :to="item.path">{{ item.label }}</router-link>
+                        <li class="nav-item" v-for="(item, navigationIndex) in navbarStore.pages" :key="navigationIndex"
+                            @click.prevent="navbarStore.index = navigationIndex">
+                            <router-link :to="item.path" :class="{ active: navbarStore.index === navigationIndex }">{{
+                    item.label }}</router-link>
                         </li>
                         <li class="nav-item dropdown">
                         </li>
@@ -28,7 +30,7 @@
                     <!-- <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> -->
+                    </form> SEE LATER -->
                 </div>
             </div>
         </nav>
@@ -36,13 +38,18 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { useNavbarStore } from '@/stores/NavbarStore'
 const navbarStore = useNavbarStore();
+const isHamburgerActive = ref(false);
+const toggleHamburger = () => {
+    isHamburgerActive.value = !isHamburgerActive.value;
+};
 </script>
 
 <style lang="scss" scoped>
 .active {
-    color: lime;
+    color: lime !important;
 }
 
 @media (max-width: 991px) {
@@ -100,9 +107,12 @@ const navbarStore = useNavbarStore();
     align-items: center !important;
     justify-content: flex-end !important;
 
-    a {
-        margin-right: 75px;
+    @media (min-width: 991px) {
+        a {
+            margin-right: 75px;
+        }
     }
+
 }
 
 img {

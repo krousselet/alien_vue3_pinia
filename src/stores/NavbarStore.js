@@ -4,6 +4,7 @@ export const useNavbarStore = defineStore('navbar', {
         hamburgerClasses: ['upper', 'middle', 'lower'],
         hamburgerActiveClasses: ['upper-active', 'middle-active', 'lower-active'],
         logo: require('@/../public/logo.svg'),
+        index: 0,
         pages: [
             //HOME
             {
@@ -19,6 +20,10 @@ export const useNavbarStore = defineStore('navbar', {
             {
                 label: 'contacter',
                 path: '/contacter',
+            },
+            {
+                label: 'projets',
+                path: '/projets',
             },
         ]
     }),

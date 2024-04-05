@@ -7,7 +7,7 @@
                         class="img-fluid w-100 h-100" style="object-fit: cover;">
                 </div>
                 <div class="position-absolute top-50 start-50 catch">
-                    <p class="text-white" style="z-index: 1;">{{ homeStore.catch }}</p>
+                    <p class="text-white" style="z-index: 1;">{{ homeStore.catch }}<span>{{ homeStore.code }}</span></p>
                 </div>
             </main>
         </div>
@@ -26,10 +26,33 @@ body {
     overflow: hidden;
     width: 100%;
     height: 100%;
+    opacity: 0;
+}
+
+main {
+    opacity: 0;
+    animation: appear 1s .3s ease forwards;
+
+    div {
+
+        img {
+            opacity: 0;
+            animation: appear 1s 1s ease forwards;
+        }
+    }
+
 }
 
 p {
     color: lime !important;
+    opacity: 0;
+    animation: appear 1s 2s ease forwards;
+    cursor: default;
+
+    span {
+        /* filter: brightness(.5); */
+        animation: shine 1s infinite reverse;
+    }
 }
 
 .catch {
@@ -37,5 +60,30 @@ p {
     font-size: 32px;
     width: 100% !important;
     letter-spacing: 3px;
+}
+
+@keyframes shine {
+    0% {
+        filter: brightness(0);
+    }
+
+    /* 50% {
+        filter: brightness(.5);
+    } */
+
+    100% {
+        filter: brightness(1);
+        color: red;
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 </style>
