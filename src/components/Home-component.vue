@@ -7,7 +7,7 @@
                         class="img-fluid w-100 h-100" style="object-fit: cover;">
                 </div>
                 <div class="position-absolute top-50 start-50 catch">
-                    <p class="text-white" style="z-index: 1;">{{ homeStore.catch }}<span>{{ homeStore.code }}</span></p>
+                    <p id="test" class="text-white" style="z-index: 1;">{{ homeStore.catch }}<span>{{ homeStore.code }}</span></p>
                 </div>
             </main>
         </div>
@@ -60,6 +60,26 @@ p {
     font-size: 32px;
     width: 100% !important;
     letter-spacing: 3px;
+}
+
+#test {
+    font-family: 'PREDATOR', sans-serif !important;
+    transition: .3s ease;
+    
+    &:hover {
+        font-family: "Orbitron", sans-serif !important;
+        transition: .3s ease;
+    }
+}
+
+span {
+    font-family: 'PREDATOR', sans-serif !important;
+    transition: .3s ease;
+    
+    &:hover {
+        font-family: "Orbitron", sans-serif !important;
+        transition: .3s ease;
+    }
 }
 
 @keyframes shine {

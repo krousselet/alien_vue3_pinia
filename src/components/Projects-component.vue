@@ -1,10 +1,22 @@
 <template>
-    <swiper :slidesPerView="3" navigation pagination>
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 2</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
+    <swiper :slidesPerView="1" :breakpoints="{
+        640: {
+            slidesPerView: 2,
+        },
+        768: {
+            slidesPerView: 3,
+        }
+    }" navigation pagination>
+        <swiper-slide v-for="(project, projectIndex) in projectsStore.projects" :key="projectIndex">
+            <img :src="project" alt="">
+        </swiper-slide>
     </swiper>
 </template>
+
+<script setup>
+import { useProjectsStore } from '@/stores/ProjectsStore';
+const projectsStore = useProjectsStore();
+</script>
 
 <script>
 // Importing Swiper Vue components

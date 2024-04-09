@@ -44,11 +44,12 @@ a {
 
 
 body {
-  background: black;
+  background: rgba(0, 0, 0, 0.904);
 }
 
 
 * {
   font-family: "Orbitron", sans-serif;
 }
+
 </style>
